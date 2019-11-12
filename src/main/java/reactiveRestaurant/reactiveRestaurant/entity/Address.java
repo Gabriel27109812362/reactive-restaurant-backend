@@ -1,4 +1,4 @@
-package reactiveRestaurant.reactiveRestaurant.entity;
+﻿package reactiveRestaurant.reactiveRestaurant.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,9 +13,6 @@ public class Address {
     @Id
     private UUID id;
 
-    /**
-     * Status zamówienia
-     */
     private String street;
 
     /**
