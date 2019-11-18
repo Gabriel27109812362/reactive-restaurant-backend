@@ -3,31 +3,30 @@ package reactiveRestaurant.reactiveRestaurant.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
-
-@Entity
 /**
  *  karta kredytowa
  */
+@Entity
 public class Credit_card {
     @Id
     private UUID id;
-
-    private String number;
-
     /**
      * numer konta
      */
+    private String number;
 
-    private double balance;
 
     /**
      * stan konta
      */
-    private String bank;
+    private double balance;
 
     /**
      * nazwa banku
      */
+    private String bank;
+
+
 
 
     public Credit_card(String number, double balance, String bank) {
