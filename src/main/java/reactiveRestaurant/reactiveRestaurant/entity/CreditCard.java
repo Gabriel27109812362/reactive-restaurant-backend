@@ -7,7 +7,7 @@ import java.util.UUID;
  *  karta kredytowa
  */
 @Entity
-public class Credit_card {
+public class CreditCard {
     @Id
     private UUID id;
     /**
@@ -29,7 +29,7 @@ public class Credit_card {
 
 
 
-    public Credit_card(String number, double balance, String bank) {
+    public CreditCard(String number, double balance, String bank) {
         this.id = UUID.randomUUID();
         this.balance = balance;
         this.bank = bank;
