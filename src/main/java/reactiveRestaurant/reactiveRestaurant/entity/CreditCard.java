@@ -3,34 +3,33 @@ package reactiveRestaurant.reactiveRestaurant.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
-
-@Entity
 /**
  *  karta kredytowa
  */
-public class Credit_card {
+@Entity
+public class CreditCard {
     @Id
     private UUID id;
-
-    private String number;
-
     /**
      * numer konta
      */
+    private String number;
 
-    private double balance;
 
     /**
      * stan konta
      */
-    private String bank;
+    private double balance;
 
     /**
      * nazwa banku
      */
+    private String bank;
 
 
-    public Credit_card(String number, double balance, String bank) {
+
+
+    public CreditCard(String number, double balance, String bank) {
         this.id = UUID.randomUUID();
         this.balance = balance;
         this.bank = bank;
