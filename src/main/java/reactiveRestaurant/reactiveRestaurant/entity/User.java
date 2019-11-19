@@ -1,10 +1,7 @@
 package reactiveRestaurant.reactiveRestaurant.entity;
 
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.util.UUID;
 /**
  * uzytkownik
@@ -32,7 +29,7 @@ public class User {
     /**
      * numer karty
      */
-    private Credit_card credit_card;
+    private CreditCard creditCard;
     /**
      * adres
      */
@@ -40,14 +37,14 @@ public class User {
 
 
     public User(String name, String surname, String phoneNumber,
-                String email, Credit_card credit_card, Address address) {
+                String email, CreditCard creditCard, Address address) {
 
         this.id = UUID.randomUUID();
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.credit_card = credit_card;
+        this.creditCard= creditCard;
         this.address = address;
     }
 
@@ -78,12 +75,12 @@ public class User {
         this.email = email;
     }
 
-    public Credit_card getCredit_card() {
-        return credit_card;
+    public CreditCard getCreditCard() {
+        return creditCard;
     }
 
-    public void setCredit_card(Credit_card credit_card) {
-        this.credit_card = credit_card;
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
     }
 
     public Address getAddress() {

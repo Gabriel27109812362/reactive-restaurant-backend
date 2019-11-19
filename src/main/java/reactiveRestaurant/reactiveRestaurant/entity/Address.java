@@ -9,32 +9,33 @@ import java.util.UUID;
  * adres
  */
 @Entity
+
 public class Address {
     @Id
     private UUID id;
-
-    private String street;
-
     /**
      * ulica
      */
+    private String street;
 
-    private String house_number;
 
     /**
      * numer domu
      */
-    private String city;
+    private String house_number;
 
     /**
      * nazwa miasta
      */
-    private String postcode;
-
+    private String city;
 
     /**
      * postcode
      */
+    private String postcode;
+
+
+
     public Address(String street, String house_number, String city, String postcode) {
         this.id = UUID.randomUUID();
         this.street = street;
