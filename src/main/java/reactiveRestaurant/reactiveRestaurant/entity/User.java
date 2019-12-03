@@ -91,7 +91,11 @@ public class User {
         this.address = address;
     }
 
+    public String getName() {
+        return name;
+    }
 
-
-
+    public String getSurname() {
+        return surname;
+    }
 }
