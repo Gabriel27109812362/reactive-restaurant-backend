@@ -28,6 +28,10 @@ public class Ingredient {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public UUID getId() {
         return id;
     }

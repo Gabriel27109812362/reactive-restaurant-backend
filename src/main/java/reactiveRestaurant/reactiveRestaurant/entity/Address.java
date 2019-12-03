@@ -1,4 +1,4 @@
-﻿package reactiveRestaurant.reactiveRestaurant.entity;
+package reactiveRestaurant.reactiveRestaurant.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
