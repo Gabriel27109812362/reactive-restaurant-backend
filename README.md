@@ -31,7 +31,8 @@ Instrukcja odpalenia projektu
         APP_ID="***********"
         MEASURMENT_ID="***********"
         
-   W razie wątpliwości zajżyj do pliku src/services/firebaseService.js
+ W razie wątpliwości zajżyj do pliku src/services/firebaseService.js
+
 7. Po tych krokach należy uruchomić komendę "npm run postinstall" w celu zmapowania aliasów do ścieżek
     Komendę tą wystarczy uruchomić raz chyba że chcemy dodać nowy alias do jakiegoś folderu:
     
