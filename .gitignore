@@ -1,5 +1,8 @@
-/.idea/
-/mvnw
-/HELP.md
-/mvnw.cmd
-/target/
+node_modules
+build
+npm-debug.log
+.env
+.DS_Store
+.idea
+.vscode
+package-lock.json
