@@ -1,4 +1,8 @@
+const userController = require('express').Router();
+const {firestore} = require('services/firebaseService');
 
-const user = [];
+userController.get('/', (req, res) => {
 
-module.exports = user;
+});
+
+module.exports = userController;
