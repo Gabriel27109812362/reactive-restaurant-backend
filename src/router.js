@@ -7,5 +7,4 @@ router.get('/', ((req, res) => {
 router.use('/user', require('controllers/userController'));
 
 // TODO: there import controllers
-
 module.exports = router;
