@@ -1,26 +1,33 @@
 const userController = require('express').Router();
 const { firestore } = require('services/firebaseService');
-const bcrypt = require('bcryptjs');
-// var salt = bcrypt.genSaltSync(10);
-// var hash = bcrypt.hashSync("B4c0/\/", salt);
+const { encrypt } = require('services/encryptService');
 
 userController.get('/', (req, res) => {
 });
 
-userController.post('/', (req, res) => {
-   const name = req.body.name;
-   const surname = req.body.surname;
-   const email = req.body.email;
-   const password = req.body.password;
+userController.post('/register', (req, res) => {
+   try {
+      const { name, surname, email, password } = req.body;
+      const hash = encrypt(password);
+      const user = { name, surname, email, hash };
 
-   // bcrypt.hash(password, salt, function(err, hash) {
-   //     firestore
-   //     .collection('user')
-   //     .add({name,surname,email,hash});
-   // });
+      firestore
+         .collection('user')
+         .add(user);
 
-   res.send(hash);
+      res.sendStatus(201);
+   } catch(e) {
+      res.status(500).send(e.message);
+   }
 
 });
+
+
+
+
+
+
+
+
 
 module.exports = userController;
