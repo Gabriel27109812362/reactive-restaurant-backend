@@ -5,58 +5,54 @@ const { encrypt, compare } = require('services/encryptService');
 const { checkUser } = require('middlewares/checkUser');
 const jwt = require('jsonwebtoken');
 
-userController.get('/', (req, res) => {
-});
+userController.get('/', (req, res) => {});
 
 userController.post('/register', checkUser, (req, res) => {
-   try {
-      const { name, surname, email, password } = req.body;
-      const hash = encrypt(password);
-      const user = { name, surname, email, hash };
+  try {
+    const { name, surname, email, password } = req.body;
+    const hash = encrypt(password);
+    const user = { name, surname, email, hash };
 
-      firestore
-         .collection('user')
-         .add(user);
+    firestore.collection('user').add(user);
 
-      res.sendStatus(201);
-   } catch(e) {
-      res.status(500).send(e.message);
-   }
+    res.sendStatus(201);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
 });
 
-userController.post('/auth', async(req, res) => {
+userController.post('/auth', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await firestore
+      .collection('user')
+      .where('email', '==', email.toString())
+      .get();
 
-   try {
-      const { email, password } = req.body;
+    if (user.size === 0) {
+      res.sendStatus(404);
+    }
+    if (user.size > 1) {
+      res.sendStatus(500);
+    }
 
-      const user = await firestore
-         .collection('user')
-         .where('email', '==', email.toString())
-         .get();
+    let foundedUser;
+    user.forEach((doc) => (foundedUser = doc.data()));
 
-      if(user.size === 0) {
-         res.sendStatus(404);
-      }
-      if(user.size > 1) {
-         res.sendStatus(500);
-      }
+    if (!compare(password, foundedUser.hash)) {
+      res.status(403).send({ message: 'access denied' });
+    }
 
-      let foundedUser;
-      user.forEach(doc => foundedUser = doc.data());
+    const token = jwt.sign(
+      { email, password },
+      process.env.ACCESS_TOKEN_SECRET,
+      { algorithm: 'HS256', expiresIn: '1d' }
+    );
 
-      if(!compare(password, foundedUser.hash)) {
-         res.status(403).send({ message: 'access denied' });
-      }
-
-      const token = jwt.sign({ email, password },
-         process.env.ACCESS_TOKEN_SECRET,
-         { algorithm: 'HS256', expiresIn: '1h' });
-
-      res.status(200).send({ accessToken: token });
-   } catch(e) {
-      res.status(500).send(e.message);
-   }
-
+    res.status(200).send({ accessToken: token });
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
 });
 
 module.exports = userController;
